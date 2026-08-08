@@ -46,7 +46,7 @@ export default function RoleNavigation({
   const dealerItems: NavigationItem[] = [
     {
       href: "/dashboard",
-      label: "Dealer Home",
+      label: "Home",
       icon: LayoutDashboard,
     },
     {
@@ -99,7 +99,7 @@ export default function RoleNavigation({
         : dealerItems;
 
   return (
-    <nav className="mobile-role-navigation grid w-full grid-cols-3 gap-1 px-2 pb-3 pt-3 lg:flex lg:w-auto lg:flex-col lg:gap-2 lg:overflow-visible lg:px-4 lg:py-5">
+    <nav className="mobile-role-navigation relative z-20 grid w-full grid-cols-3 gap-1 px-2 pb-3 pt-3 lg:flex lg:w-auto lg:flex-col lg:gap-2 lg:overflow-visible lg:px-4 lg:py-5">
       {items.map((item) => {
         const active =
           isActivePath(
@@ -136,7 +136,7 @@ export default function RoleNavigation({
           <Link
             key={item.href}
             href={item.href}
-            className={`relative flex min-w-0 flex-col items-center justify-center gap-1 overflow-hidden rounded-xl px-1.5 py-2 text-center text-[10px] font-semibold leading-tight transition sm:px-2 sm:text-xs lg:flex-row lg:justify-start lg:gap-3 lg:px-4 lg:py-3 lg:text-left lg:text-sm ${
+            className={`relative z-10 flex min-h-14 min-w-0 cursor-pointer flex-col items-center justify-center gap-1 overflow-hidden rounded-xl px-1.5 py-2 text-center text-[10px] font-semibold leading-tight transition sm:px-2 sm:text-xs lg:min-h-0 lg:flex-row lg:justify-start lg:gap-3 lg:px-4 lg:py-3 lg:text-left lg:text-sm ${
               active
                 ? "bg-white/10 text-white"
                 : "text-slate-300 hover:bg-white/5 hover:text-white"
@@ -184,3 +184,4 @@ export default function RoleNavigation({
     </nav>
   );
 }
+

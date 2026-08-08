@@ -1,4 +1,5 @@
 ﻿import type { ReactNode } from "react";
+import Image from "next/image";
 import { logout } from "../app/login/actions";
 import { createClient } from "../lib/supabase/server";
 import NotificationBell, {
@@ -67,11 +68,11 @@ export default async function AppShell({
 
   const portalName = staffUser
     ? "Support Command Center"
-    : "Dealer Claims Portal";
+    : "Dealer & Customer Claim Support";
 
   const portalDescription = staffUser
     ? "Claims operations and resolution"
-    : "Submit and track dealer claims";
+    : "Submit and track warranty claims";
 
   return (
     <div className="min-h-screen bg-white lg:grid lg:grid-cols-[275px_1fr]">
@@ -89,14 +90,19 @@ export default async function AppShell({
 
         {/* Brand */}
         <div className="flex items-center gap-3 border-b border-white/10 px-4 py-3 sm:px-6 sm:py-4 lg:py-6">
-          <div className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/15 bg-white/10 text-sm font-bold text-white sm:h-12 sm:w-12 sm:rounded-2xl sm:text-base">
-            CS
-
-            <span className="absolute bottom-0 left-0 right-0 h-1 bg-[#BF1A2F]" />
+          <div className="relative flex h-12 w-16 shrink-0 items-center justify-center overflow-hidden sm:h-14 sm:w-20">
+            <Image
+              src="/images/ag-logo.png"
+              alt="AG"
+              width={120}
+              height={80}
+              priority
+              className="h-full w-full object-contain"
+            />
           </div>
 
           <div className="min-w-0">
-            <p className="truncate text-sm font-bold text-white sm:text-base">
+            <p className="text-sm font-bold leading-tight text-white sm:text-base">
               {portalName}
             </p>
 
@@ -203,3 +209,4 @@ export default async function AppShell({
     </div>
   );
 }
+
