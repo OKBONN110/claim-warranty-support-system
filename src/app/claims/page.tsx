@@ -10,6 +10,7 @@ import { createClient } from "../../lib/supabase/server";
 
 type ClaimsPageProps = {
   searchParams: Promise<{
+    status?: string;
     created?: string;
   }>;
 };
@@ -110,8 +111,9 @@ function getStatusClasses(
 export default async function ClaimsPage({
   searchParams,
 }: ClaimsPageProps) {
-  const { created } =
-    await searchParams;
+  const parameters = await searchParams;
+  const created = parameters.created;
+  const status = parameters.status || "";
 
   const supabase =
     await createClient();
@@ -144,18 +146,29 @@ export default async function ClaimsPage({
     notificationsResult,
   ] =
     await Promise.all([
-      supabase
-        .from("claims")
-        .select(
-          "id, claim_number, customer_name, product_name, faulty_part_numbers, vehicle_side, status, priority, requested_amount, created_at",
-        )
+      (() => {
+        let claimsQuery = supabase
+          .from("claims")
+          .select(
+            "id, claim_number, customer_name, product_name, faulty_part_numbers, vehicle_side, status, priority, requested_amount, created_at",
+          );
+
+        if (status) {
+          claimsQuery = claimsQuery.eq(
+            "status",
+            status,
+          );
+        }
+
+        return claimsQuery
         .order(
           "created_at",
           {
             ascending: false,
           },
         )
-        .limit(50),
+        .limit(50)
+      })(),
 
       supabase
         .from("notifications")
@@ -583,3 +596,4 @@ export default async function ClaimsPage({
     </AppShell>
   );
 }
+

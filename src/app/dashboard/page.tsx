@@ -174,11 +174,13 @@ function DealerMetric({
   label,
   value,
   description,
+  href,
   tone = "navy",
 }: {
   label: string;
   value: number;
   description: string;
+  href: string;
   tone?: "navy" | "red" | "green";
 }) {
   const accent =
@@ -189,7 +191,11 @@ function DealerMetric({
         : "#0D2347";
 
   return (
-    <article className="relative overflow-hidden rounded-2xl border border-[#DDE3EA] bg-white p-6 shadow-[0_8px_22px_rgba(10,22,40,0.055)]">
+    <Link
+      href={href}
+      aria-label={`${label}: ${value}`}
+      className="group relative block cursor-pointer overflow-hidden rounded-2xl border border-[#DDE3EA] bg-white p-6 shadow-[0_8px_22px_rgba(10,22,40,0.055)] transition-all duration-200 hover:-translate-y-1 hover:border-[#1B3A6B]/30 hover:shadow-[0_14px_32px_rgba(10,22,40,0.12)] focus:outline-none focus:ring-4 focus:ring-[#1B3A6B]/15 active:translate-y-0"
+    >
       <div
         className="absolute bottom-0 left-0 top-0 w-1.5"
         style={{
@@ -197,9 +203,13 @@ function DealerMetric({
         }}
       />
 
-      <p className="text-sm font-bold text-[#1B3A6B]">
-        {label}
-      </p>
+      <div className="flex items-start justify-between gap-3">
+        <p className="text-sm font-bold text-[#1B3A6B] transition group-hover:text-[#BF1A2F]">
+          {label}
+        </p>
+
+        <ArrowRight className="h-4 w-4 shrink-0 text-[#8793A3] transition-transform group-hover:translate-x-1 group-hover:text-[#BF1A2F]" />
+      </div>
 
       <p className="mt-3 text-4xl font-extrabold text-[#0D2347]">
         {value}
@@ -208,7 +218,7 @@ function DealerMetric({
       <p className="mt-2 text-xs leading-5 text-[#68778B]">
         {description}
       </p>
-    </article>
+    </Link>
   );
 }
 
@@ -645,7 +655,8 @@ export default async function DashboardPage() {
             <DealerMetric
               label="My Claims"
               value={totalClaims}
-              description="All claims available to your dealer account"
+              description="All claims available to your account"
+              href="/claims"
             />
 
             <DealerMetric
@@ -654,6 +665,7 @@ export default async function DashboardPage() {
                 submittedClaims.length
               }
               description="Waiting for support's initial review"
+              href="/claims?status=submitted"
             />
 
             <DealerMetric
@@ -662,6 +674,7 @@ export default async function DashboardPage() {
                 reviewClaims.length
               }
               description="Currently being assessed by support"
+              href="/claims?status=under_review"
             />
 
             <DealerMetric
@@ -670,6 +683,7 @@ export default async function DashboardPage() {
                 actionRequiredClaims.length
               }
               description="Support is waiting for information from you"
+              href="/claims?status=waiting_for_dealer"
               tone="red"
             />
 
@@ -679,6 +693,7 @@ export default async function DashboardPage() {
                 approvedClaims.length
               }
               description="Warranty claims approved by support"
+              href="/claims?status=approved"
               tone="green"
             />
           </section>
@@ -1055,3 +1070,4 @@ export default async function DashboardPage() {
     </AppShell>
   );
 }
+
