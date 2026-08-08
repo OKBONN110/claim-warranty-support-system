@@ -1,4 +1,4 @@
-import {
+﻿import {
   ExternalLink,
   File,
   FileImage,
@@ -226,30 +226,43 @@ export default async function ClaimDocuments({
     );
 
   return (
-    <section
+    <details
       id="documents"
-      className="overflow-hidden rounded-3xl border border-[#DDE3EA] bg-white shadow-[0_10px_30px_rgba(10,22,40,0.07)]"
+      className="group overflow-hidden rounded-2xl border border-[#DDE3EA] bg-white shadow-sm"
     >
-      <div className="border-b border-[#E5E9EF] p-6 sm:p-7">
-        <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
-          <div>
+      <summary className="cursor-pointer list-none px-4 py-4 sm:px-6 [&::-webkit-details-marker]:hidden">
+        <div className="flex items-start justify-between gap-4">
+          <div className="min-w-0">
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#BF1A2F]">
               Claim evidence
             </p>
 
-            <h3 className="mt-2 text-2xl font-extrabold text-[#0D2347]">
+            <h3 className="mt-1 text-lg font-extrabold text-[#0D2347] sm:text-xl">
               Photos, Videos &amp; Documents
             </h3>
 
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-[#65758A]">
-              Review supporting photographs,
-              video evidence, invoices,
-              reports, and other documents
-              attached to this claim.
+            <p className="mt-1 text-xs leading-5 text-[#65758A] sm:text-sm">
+              Review photos, videos, invoices and supporting documents.
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-2">
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#0D2347]/5 text-[#0D2347]">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-5 w-5 transition-transform duration-200 group-open:rotate-180"
+              aria-hidden="true"
+            >
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </span>
+        </div>
+
+        <div className="mt-3 flex flex-wrap gap-2">
             <span className="rounded-full bg-[#0D2347]/5 px-3 py-1.5 text-xs font-bold text-[#0D2347]">
               {documentsWithUrls.length} files
             </span>
@@ -275,10 +288,10 @@ export default async function ClaimDocuments({
                 total
               </span>
             ) : null}
-          </div>
         </div>
-      </div>
+      </summary>
 
+      <div className="border-t border-[#E5E9EF]">
       {error ? (
         <div className="m-6 rounded-xl border border-red-200 bg-red-50 p-4 text-sm font-semibold text-red-700">
           Unable to load evidence:{" "}
@@ -389,7 +402,7 @@ export default async function ClaimDocuments({
                           {getFileTypeLabel(
                             document.mime_type,
                           )}
-                          {" · "}
+                          {" Â· "}
                           {formatFileSize(
                             Number(
                               document.file_size,
@@ -492,6 +505,7 @@ export default async function ClaimDocuments({
           </button>
         </form>
       </div>
-    </section>
+      </div>
+    </details>
   );
 }

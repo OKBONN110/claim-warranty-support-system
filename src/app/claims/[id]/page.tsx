@@ -559,12 +559,36 @@ export default async function ClaimDetailPage({
 
         <div className="mt-5 grid min-w-0 gap-5 sm:mt-7 sm:gap-7 xl:grid-cols-[minmax(0,1fr)_390px]">
           <div className="min-w-0 space-y-5 sm:space-y-7">
-            <section className="rounded-2xl border border-[#DDE3EA] bg-white p-4 shadow-sm sm:p-6">
-              <h3 className="text-lg font-extrabold text-[#0D2347]">
-                Claim Information
-              </h3>
+            <details className="group overflow-hidden rounded-2xl border border-[#DDE3EA] bg-white shadow-sm">
+              <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 px-4 py-4 text-left sm:px-6 [&::-webkit-details-marker]:hidden">
+                <div>
+                  <h3 className="text-lg font-extrabold text-[#0D2347]">
+                    Claim Information
+                  </h3>
 
-              <dl className="mt-5 grid gap-5 sm:mt-6 sm:grid-cols-2 sm:gap-6">
+                  <p className="mt-1 text-xs text-[#65758A]">
+                    Customer, product, claim type and description
+                  </p>
+                </div>
+
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#0D2347]/5 text-[#0D2347]">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-5 w-5 transition-transform duration-200 group-open:rotate-180"
+                    aria-hidden="true"
+                  >
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </span>
+              </summary>
+
+              <div className="border-t border-[#E5E9EF] p-4 sm:p-6">
+              <dl className="grid gap-5 sm:grid-cols-2 sm:gap-6">
                 <div>
                   <dt className="text-xs font-bold uppercase tracking-wide text-[#65758A]">
                     Customer
@@ -638,7 +662,8 @@ export default async function ClaimDetailPage({
                   }
                 </p>
               </div>
-            </section>
+              </div>
+            </details>
 
             <ClaimWarrantyDetails
               claimId={
@@ -652,24 +677,45 @@ export default async function ClaimDetailPage({
               }
             />
 
-            <section className="rounded-2xl border border-[#DDE3EA] bg-white p-4 shadow-sm sm:p-6">
-              <div className="flex min-w-0 items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#0D2347]/10 text-[#0D2347]">
-                  <MessageCircle className="h-5 w-5" />
+            <details
+              open
+              className="group overflow-hidden rounded-2xl border border-[#DDE3EA] bg-white shadow-sm"
+            >
+              <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 px-4 py-4 text-left sm:px-6 [&::-webkit-details-marker]:hidden">
+                <div className="flex min-w-0 items-center gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#0D2347]/10 text-[#0D2347]">
+                    <MessageCircle className="h-5 w-5" />
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-extrabold text-[#0D2347]">
+                      Conversation
+                    </h3>
+
+                    <p className="text-xs text-[#65758A]">
+                      Dealer, customer and support communication
+                    </p>
+                  </div>
                 </div>
 
-                <div>
-                  <h3 className="text-lg font-extrabold text-[#0D2347]">
-                    Conversation
-                  </h3>
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#0D2347]/5 text-[#0D2347]">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-5 w-5 transition-transform duration-200 group-open:rotate-180"
+                    aria-hidden="true"
+                  >
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </span>
+              </summary>
 
-                  <p className="text-xs text-[#65758A]">
-                    Dealer and support communication
-                  </p>
-                </div>
-              </div>
-
-              <div className="conversation-thread mt-6">
+              <div className="border-t border-[#E5E9EF] p-4 sm:p-6">
+              <div className="conversation-thread">
                 {messages.map(
                   (item) => {
                     const sentByCurrentUser =
@@ -791,7 +837,8 @@ export default async function ClaimDetailPage({
                   Send Message
                 </button>
               </form>
-            </section>
+              </div>
+            </details>
           </div>
 
           <aside className="space-y-5 sm:space-y-7">
@@ -1026,6 +1073,7 @@ export default async function ClaimDetailPage({
     </AppShell>
   );
 }
+
 
 
 

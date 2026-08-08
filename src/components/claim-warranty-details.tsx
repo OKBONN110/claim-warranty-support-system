@@ -1,4 +1,4 @@
-import { createClient } from "../lib/supabase/server";
+﻿import { createClient } from "../lib/supabase/server";
 
 type ClaimWarrantyDetailsProps = {
   claimId: string;
@@ -86,14 +86,36 @@ export default async function ClaimWarrantyDetails({
   ];
 
   return (
-    <section className="rounded-3xl bg-white p-6 text-[#0D2347] shadow-xl sm:p-8">
-      <div className="border-b border-[#0D2347]/10 pb-5">
-        <h3 className="text-xl font-bold">
-          Warranty Claim Details
-        </h3>
-      </div>
+    <details className="group overflow-hidden rounded-2xl border border-[#DDE3EA] bg-white text-[#0D2347] shadow-sm">
+      <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 px-4 py-4 text-left sm:px-6 [&::-webkit-details-marker]:hidden">
+        <div>
+          <h3 className="text-lg font-extrabold">
+            Warranty Claim Details
+          </h3>
 
-      <dl className="mt-6 grid gap-5 sm:grid-cols-2">
+          <p className="mt-1 text-xs text-[#65758A]">
+            Contact, invoice, installation and faulty part information
+          </p>
+        </div>
+
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#0D2347]/5 text-[#0D2347]">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-5 w-5 transition-transform duration-200 group-open:rotate-180"
+            aria-hidden="true"
+          >
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </span>
+      </summary>
+
+      <div className="border-t border-[#E5E9EF] p-4 sm:p-6">
+      <dl className="grid gap-5 sm:grid-cols-2">
         {details.map((detail) => (
           <div
             key={detail.label}
@@ -119,6 +141,7 @@ export default async function ClaimWarrantyDetails({
           {claim.description}
         </p>
       </div>
-    </section>
+      </div>
+    </details>
   );
 }
