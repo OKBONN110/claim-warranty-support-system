@@ -1,0 +1,1480 @@
+@import "@fontsource/poppins/400.css";
+@import "@fontsource/poppins/500.css";
+@import "@fontsource/poppins/600.css";
+@import "@fontsource/poppins/700.css";
+@import "tailwindcss";
+
+:root {
+  --navy-start: #0A1628;
+  --navy-mid: #1B3A6B;
+  --navy-end: #0D2347;
+  --accent-red: #BF1A2F;
+  --text-primary: #FFFFFF;
+  --text-secondary: #DCE7F7;
+  --border-soft: rgba(255, 255, 255, 0.12);
+  --panel-bg: rgba(10, 22, 40, 0.82);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(
+      circle at 15% 10%,
+      rgba(27, 58, 107, 0.55),
+      transparent 34%
+    ),
+    linear-gradient(
+      135deg,
+      var(--navy-start) 0%,
+      var(--navy-mid) 48%,
+      var(--navy-end) 100%
+    );
+  color: var(--text-primary);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.app-theme {
+  min-height: 100vh;
+  color: var(--text-primary);
+  background:
+    radial-gradient(
+      circle at 85% 8%,
+      rgba(27, 58, 107, 0.6),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      var(--navy-start) 0%,
+      var(--navy-mid) 48%,
+      var(--navy-end) 100%
+    );
+}
+
+.app-theme .bg-white {
+  background-color: rgba(10, 22, 40, 0.86) !important;
+}
+
+.app-theme .bg-slate-100,
+.app-theme .bg-slate-50 {
+  background-color: rgba(13, 35, 71, 0.72) !important;
+}
+
+.app-theme .text-slate-900,
+.app-theme .text-slate-800,
+.app-theme .text-slate-700 {
+  color: #ffffff !important;
+}
+
+.app-theme .text-slate-600,
+.app-theme .text-slate-500,
+.app-theme .text-slate-400 {
+  color: #d3dfef !important;
+}
+
+.app-theme .border-slate-100,
+.app-theme .border-slate-200,
+.app-theme .border-slate-300 {
+  border-color: rgba(255, 255, 255, 0.13) !important;
+}
+
+.app-theme .divide-slate-100 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.app-theme input,
+.app-theme select,
+.app-theme textarea {
+  background-color: rgba(10, 22, 40, 0.78) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  color: #ffffff !important;
+}
+
+.app-theme input::placeholder,
+.app-theme textarea::placeholder {
+  color: rgba(220, 231, 247, 0.62);
+}
+
+.app-theme select option {
+  background-color: #0d2347;
+  color: #ffffff;
+}
+
+.app-theme input:focus,
+.app-theme select:focus,
+.app-theme textarea:focus {
+  border-color: var(--accent-red) !important;
+  box-shadow: 0 0 0 4px rgba(191, 26, 47, 0.17) !important;
+}
+
+.app-theme .hover\:bg-slate-50:hover,
+.app-theme .hover\:bg-slate-100:hover {
+  background-color: rgba(27, 58, 107, 0.72) !important;
+}
+
+.app-theme .bg-indigo-100 {
+  background-color: rgba(27, 58, 107, 0.92) !important;
+}
+
+.app-theme .text-indigo-700,
+.app-theme .text-indigo-600 {
+  color: #ffffff !important;
+}
+
+.app-theme .bg-amber-100 {
+  background-color: rgba(191, 26, 47, 0.24) !important;
+}
+
+.app-theme .text-amber-800 {
+  color: #ffffff !important;
+}
+
+.app-theme .bg-emerald-50 {
+  background-color: rgba(16, 91, 73, 0.35) !important;
+}
+
+.app-theme .text-emerald-800,
+.app-theme .text-emerald-700 {
+  color: #eafff7 !important;
+}
+
+.app-theme .bg-red-50 {
+  background-color: rgba(191, 26, 47, 0.18) !important;
+}
+
+.app-theme .text-red-700 {
+  color: #ffe6ea !important;
+}
+
+.app-theme table thead {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(10, 22, 40, 0.95),
+      rgba(27, 58, 107, 0.88)
+    ) !important;
+}
+
+.app-theme table tbody tr:hover {
+  background-color: rgba(27, 58, 107, 0.45) !important;
+}
+
+.app-theme .theme-panel {
+  border: 1px solid var(--border-soft);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(27, 58, 107, 0.68),
+      rgba(10, 22, 40, 0.9)
+    );
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+}
+
+.app-theme .red-accent-line {
+  background-color: var(--accent-red);
+}
+
+.app-theme .accent-button {
+  color: #ffffff;
+  background:
+    linear-gradient(
+      135deg,
+      #bf1a2f,
+      #941426
+    );
+  box-shadow: 0 12px 30px rgba(191, 26, 47, 0.26);
+}
+
+.app-theme .accent-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 34px rgba(191, 26, 47, 0.34);
+}
+/* ========================================================
+   CLAIM UI PATCH
+   ======================================================== */
+
+.claim-dark-upload {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(10, 22, 40, 0.96) 0%,
+      rgba(27, 58, 107, 0.78) 52%,
+      rgba(13, 35, 71, 0.95) 100%
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 18px 38px rgba(0, 0, 0, 0.22);
+}
+
+.claim-dark-input {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(10, 22, 40, 0.78);
+  color: #ffffff;
+  padding: 0.95rem 1rem;
+}
+
+.claim-dark-input::file-selector-button {
+  margin-right: 14px;
+  border: 0;
+  border-radius: 0.85rem;
+  padding: 0.78rem 1rem;
+  background: linear-gradient(135deg, #0D2347, #1B3A6B);
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.claim-dark-input:hover::file-selector-button {
+  filter: brightness(1.08);
+}
+
+.claim-red-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 1rem;
+  padding: 0.9rem 1.35rem;
+  font-weight: 700;
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #A01525 0%, #BF1A2F 100%);
+  box-shadow: 0 12px 28px rgba(191, 26, 47, 0.28);
+}
+
+.claim-red-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 34px rgba(191, 26, 47, 0.36);
+}
+
+.claim-file-row {
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(10, 22, 40, 0.92) 0%,
+      rgba(13, 35, 71, 0.88) 100%
+    );
+}
+
+.claim-header-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: #ffffff !important;
+  color: #0D2347 !important;
+  font-weight: 700;
+  padding: 0.75rem 1.35rem;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+}
+
+.claim-header-pill-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: #ffffff !important;
+  color: #0D2347 !important;
+  font-weight: 700;
+  padding: 0.75rem 1.35rem;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+}
+/* ========================================================
+   WHITE DOCUMENT PANEL OVERRIDES
+   ======================================================== */
+
+.claim-dark-upload {
+  border: 1px solid rgba(13, 35, 71, 0.16) !important;
+  background: #ffffff !important;
+  color: #0D2347 !important;
+  box-shadow: 0 18px 40px rgba(10, 22, 40, 0.16) !important;
+}
+
+.claim-dark-upload label,
+.claim-dark-upload p {
+  color: #0D2347 !important;
+}
+
+.claim-dark-input {
+  border: 1px solid rgba(13, 35, 71, 0.25) !important;
+  background: #f5f7fc !important;
+  color: #0D2347 !important;
+}
+
+.claim-dark-input::file-selector-button {
+  border: 0 !important;
+  background: #0D2347 !important;
+  color: #ffffff !important;
+}
+
+.claim-dark-input::file-selector-button:hover {
+  background: #1B3A6B !important;
+}
+
+.claim-file-row {
+  border: 1px solid rgba(13, 35, 71, 0.16) !important;
+  background: #ffffff !important;
+  color: #0D2347 !important;
+  box-shadow: 0 12px 28px rgba(10, 22, 40, 0.12);
+}
+
+.claim-file-row p,
+.claim-file-row span {
+  color: #0D2347 !important;
+}
+
+/* Keep action buttons red */
+.claim-red-button {
+  color: #ffffff !important;
+  background: linear-gradient(
+    135deg,
+    #A01525 0%,
+    #BF1A2F 100%
+  ) !important;
+}
+
+/* White pills with navy text */
+.claim-header-pill,
+.claim-header-pill-dark {
+  background: #ffffff !important;
+  color: #0D2347 !important;
+}
+/* ========================================================
+   WARRANTY CLAIM FORM STYLES
+   ======================================================== */
+
+.warranty-form-panel {
+  background: #ffffff !important;
+  color: #0D2347 !important;
+  border: 1px solid rgba(13, 35, 71, 0.14);
+  box-shadow: 0 24px 60px rgba(10, 22, 40, 0.24);
+}
+
+.warranty-form-panel label,
+.warranty-form-panel h2,
+.warranty-form-panel h3,
+.warranty-form-panel p {
+  color: #0D2347 !important;
+}
+
+.warranty-form-input {
+  width: 100%;
+  border: 1px solid rgba(13, 35, 71, 0.22) !important;
+  border-radius: 0.9rem;
+  background: #ffffff !important;
+  color: #0D2347 !important;
+  padding: 0.95rem 1rem;
+  outline: none;
+}
+
+.warranty-form-input::placeholder {
+  color: rgba(13, 35, 71, 0.48) !important;
+}
+
+.warranty-form-input:focus {
+  border-color: #BF1A2F !important;
+  box-shadow: 0 0 0 4px rgba(191, 26, 47, 0.12) !important;
+}
+
+.warranty-form-input option {
+  background: #ffffff !important;
+  color: #0D2347 !important;
+}
+
+.warranty-photo-box {
+  border: 1px dashed rgba(13, 35, 71, 0.28);
+  background: #F6F8FC;
+  color: #0D2347;
+}
+
+.warranty-photo-input {
+  width: 100%;
+  color: #0D2347 !important;
+}
+
+.warranty-photo-input::file-selector-button {
+  margin-right: 0.85rem;
+  border: 0;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: #0D2347;
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.warranty-submit-button {
+  width: 100%;
+  border: 0;
+  border-radius: 0.9rem;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(
+    135deg,
+    #A01525 0%,
+    #BF1A2F 100%
+  ) !important;
+  color: #ffffff !important;
+  font-weight: 700;
+  box-shadow: 0 14px 30px rgba(191, 26, 47, 0.28);
+}
+
+.warranty-submit-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 38px rgba(191, 26, 47, 0.36);
+}
+/* ========================================================
+   LIGHT RIGHT CONTENT AREA
+   ======================================================== */
+
+.right-content-area {
+  min-width: 0;
+  min-height: 100vh;
+  background: #ffffff !important;
+  color: #0D2347 !important;
+}
+
+.right-content-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(255, 255, 255, 0.97) !important;
+  border-bottom: 1px solid rgba(13, 35, 71, 0.12);
+  color: #0D2347 !important;
+  backdrop-filter: blur(14px);
+}
+
+.right-content-header::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  content: "";
+  background: linear-gradient(
+    90deg,
+    #A01525 0%,
+    #BF1A2F 100%
+  );
+}
+
+.right-content-main {
+  min-height: calc(100vh - 96px);
+  background: #ffffff !important;
+  color: #0D2347 !important;
+}
+
+.right-content-main .bg-white {
+  background: #ffffff !important;
+}
+
+.right-content-main .bg-slate-50,
+.right-content-main .bg-slate-100 {
+  background: #F6F8FC !important;
+}
+
+.right-content-main .text-slate-900,
+.right-content-main .text-slate-800,
+.right-content-main .text-slate-700 {
+  color: #0D2347 !important;
+}
+
+.right-content-main .text-slate-600,
+.right-content-main .text-slate-500 {
+  color: #4B5F7A !important;
+}
+
+.right-content-main .border-slate-100,
+.right-content-main .border-slate-200,
+.right-content-main .border-slate-300 {
+  border-color: rgba(13, 35, 71, 0.14) !important;
+}
+
+.right-content-main .theme-panel {
+  border: 1px solid rgba(13, 35, 71, 0.12) !important;
+  background: #ffffff !important;
+  color: #0D2347 !important;
+  box-shadow: 0 14px 35px rgba(10, 22, 40, 0.10) !important;
+}
+
+.right-content-main .theme-panel .text-white {
+  color: #0D2347 !important;
+}
+
+/* Elements that intentionally sit on dark or red backgrounds. */
+.right-content-main .preserve-white,
+.right-content-main .preserve-white * {
+  color: #ffffff !important;
+}
+
+/* ========================================================
+   WARRANTY FORM
+   ======================================================== */
+
+.warranty-page-container {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.warranty-form-panel {
+  overflow: hidden;
+  border: 1px solid rgba(13, 35, 71, 0.12) !important;
+  border-radius: 1.75rem;
+  background: #ffffff !important;
+  color: #0D2347 !important;
+  box-shadow: 0 22px 55px rgba(10, 22, 40, 0.12) !important;
+}
+
+.warranty-form-header {
+  border-bottom: 1px solid rgba(13, 35, 71, 0.10);
+  background: #ffffff;
+}
+
+.warranty-form-panel h2,
+.warranty-form-panel h3,
+.warranty-form-panel label,
+.warranty-form-panel p {
+  color: #0D2347 !important;
+}
+
+.warranty-section {
+  border: 1px solid rgba(13, 35, 71, 0.10);
+  border-radius: 1.25rem;
+  background: #F8FAFD;
+  padding: 1.5rem;
+}
+
+.warranty-section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #0D2347;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.warranty-section-title::before {
+  width: 5px;
+  height: 26px;
+  border-radius: 999px;
+  content: "";
+  background: linear-gradient(
+    180deg,
+    #A01525,
+    #BF1A2F
+  );
+}
+
+.warranty-field-label {
+  display: block;
+  color: #0D2347 !important;
+  font-size: 0.875rem;
+  font-weight: 750;
+  line-height: 1.4;
+}
+
+.warranty-field-helper {
+  margin-top: 0.45rem;
+  color: #62738A !important;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.warranty-form-input {
+  width: 100%;
+  min-height: 56px;
+  margin-top: 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 1rem;
+  background: linear-gradient(
+    135deg,
+    #0A1628 0%,
+    #1B3A6B 52%,
+    #0D2347 100%
+  ) !important;
+  color: #ffffff !important;
+  padding: 0.95rem 1.1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  outline: none;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 6px 15px rgba(10, 22, 40, 0.12);
+}
+
+textarea.warranty-form-input {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.warranty-form-input::placeholder {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+.warranty-form-input:focus {
+  border-color: #BF1A2F !important;
+  box-shadow:
+    0 0 0 4px rgba(191, 26, 47, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+.warranty-form-input option {
+  background: #0D2347 !important;
+  color: #ffffff !important;
+}
+
+.warranty-form-input::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
+.warranty-phone-grid {
+  display: grid;
+  grid-template-columns: 155px minmax(0, 1fr);
+  gap: 0.75rem;
+}
+
+.warranty-photo-box {
+  margin-top: 0.55rem;
+  border: 1px dashed rgba(255, 255, 255, 0.28) !important;
+  border-radius: 1.25rem;
+  background: linear-gradient(
+    135deg,
+    #0A1628 0%,
+    #1B3A6B 52%,
+    #0D2347 100%
+  ) !important;
+  color: #ffffff !important;
+  padding: 1.5rem;
+}
+
+.warranty-photo-box p,
+.warranty-photo-box span {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.warranty-photo-input {
+  width: 100%;
+  color: #ffffff !important;
+}
+
+.warranty-photo-input::file-selector-button {
+  margin-right: 1rem;
+  border: 0;
+  border-radius: 0.85rem;
+  padding: 0.8rem 1rem;
+  background: linear-gradient(
+    135deg,
+    #A01525,
+    #BF1A2F
+  );
+  color: #ffffff;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.warranty-photo-input::file-selector-button:hover {
+  filter: brightness(1.08);
+}
+
+.warranty-submit-area {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  margin: 0 -2rem -2rem;
+  border-top: 1px solid rgba(13, 35, 71, 0.10);
+  background: rgba(255, 255, 255, 0.97);
+  padding: 1.25rem 2rem 2rem;
+  backdrop-filter: blur(12px);
+}
+
+.warranty-submit-button {
+  width: 100%;
+  min-height: 56px;
+  border: 0;
+  border-radius: 1rem;
+  background: linear-gradient(
+    135deg,
+    #A01525 0%,
+    #BF1A2F 100%
+  ) !important;
+  color: #ffffff !important;
+  font-size: 1rem;
+  font-weight: 800;
+  box-shadow: 0 14px 30px rgba(191, 26, 47, 0.28);
+}
+
+.warranty-submit-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 38px rgba(191, 26, 47, 0.36);
+}
+
+.warranty-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #0D2347 !important;
+  font-size: 0.875rem;
+  font-weight: 750;
+}
+
+.warranty-back-link:hover {
+  color: #BF1A2F !important;
+}
+
+@media (max-width: 640px) {
+  .warranty-phone-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .warranty-section {
+    padding: 1rem;
+  }
+
+  .warranty-submit-area {
+    margin-right: -1.5rem;
+    margin-bottom: -1.5rem;
+    margin-left: -1.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-left: 1.5rem;
+  }
+}
+
+/* BEGIN FINAL LIGHT GRAY FIELD OVERRIDE */
+
+/*
+  Empty control:
+  - Light-gray background
+  - Light-gray placeholder
+
+  Completed/focused control:
+  - White background
+  - Navy entered text
+*/
+
+/* Form section cards */
+.right-content-main .warranty-section {
+  border: 1px solid #DDE3EA !important;
+  background: #F8F9FB !important;
+  box-shadow: none !important;
+}
+
+/* Force-remove every previous gradient */
+.right-content-main input.warranty-form-input,
+.right-content-main select.warranty-form-input,
+.right-content-main textarea.warranty-form-input {
+  min-height: 56px;
+
+  border: 1px solid #CCD4DE !important;
+  border-radius: 12px !important;
+
+  background-color: #F1F3F5 !important;
+  background-image: none !important;
+  background: #F1F3F5 !important;
+
+  color: #0D2347 !important;
+  -webkit-text-fill-color: #0D2347 !important;
+  caret-color: #0D2347 !important;
+
+  padding: 15px 16px !important;
+
+  font-size: 16px !important;
+  font-weight: 500 !important;
+
+  outline: none !important;
+
+  box-shadow:
+    inset 0 1px 2px rgba(10, 22, 40, 0.04),
+    0 1px 2px rgba(10, 22, 40, 0.03) !important;
+}
+
+/* Lighter placeholder */
+.right-content-main input.warranty-form-input::placeholder,
+.right-content-main textarea.warranty-form-input::placeholder {
+  color: #A4ADB9 !important;
+  -webkit-text-fill-color: #A4ADB9 !important;
+  opacity: 1 !important;
+  font-weight: 400 !important;
+}
+
+/* Empty text fields remain light gray */
+.right-content-main input.warranty-form-input:placeholder-shown,
+.right-content-main textarea.warranty-form-input:placeholder-shown {
+  background-color: #F1F3F5 !important;
+  background-image: none !important;
+}
+
+/* After typing, field background becomes white */
+.right-content-main input.warranty-form-input:not(:placeholder-shown),
+.right-content-main textarea.warranty-form-input:not(:placeholder-shown) {
+  background-color: #FFFFFF !important;
+  background-image: none !important;
+  color: #0D2347 !important;
+  -webkit-text-fill-color: #0D2347 !important;
+}
+
+/* Selected dropdown/date values become white */
+.right-content-main select.warranty-form-input:valid,
+.right-content-main input[type="month"].warranty-form-input:valid {
+  background-color: #FFFFFF !important;
+  background-image: none !important;
+  color: #0D2347 !important;
+}
+
+/* Focus state */
+.right-content-main input.warranty-form-input:focus,
+.right-content-main select.warranty-form-input:focus,
+.right-content-main textarea.warranty-form-input:focus {
+  border-color: #BF1A2F !important;
+
+  background-color: #FFFFFF !important;
+  background-image: none !important;
+
+  color: #0D2347 !important;
+  -webkit-text-fill-color: #0D2347 !important;
+
+  box-shadow:
+    0 0 0 4px rgba(191, 26, 47, 0.11),
+    0 3px 10px rgba(10, 22, 40, 0.06) !important;
+}
+
+/* Hover state */
+.right-content-main input.warranty-form-input:hover:not(:focus),
+.right-content-main select.warranty-form-input:hover:not(:focus),
+.right-content-main textarea.warranty-form-input:hover:not(:focus) {
+  border-color: #AEB9C6 !important;
+}
+
+/* Dropdown options */
+.right-content-main select.warranty-form-input option {
+  background: #FFFFFF !important;
+  color: #0D2347 !important;
+}
+
+/* Calendar icon */
+.right-content-main
+  input[type="month"].warranty-form-input::-webkit-calendar-picker-indicator {
+  filter: none !important;
+  opacity: 0.7 !important;
+  cursor: pointer !important;
+}
+
+/* Browser autofill */
+.right-content-main input.warranty-form-input:-webkit-autofill,
+.right-content-main input.warranty-form-input:-webkit-autofill:hover,
+.right-content-main input.warranty-form-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #0D2347 !important;
+
+  box-shadow:
+    0 0 0 1000px #FFFFFF inset,
+    0 0 0 4px rgba(191, 26, 47, 0.11) !important;
+
+  transition: background-color 9999s ease-out 0s;
+}
+
+/* Text area */
+.right-content-main textarea.warranty-form-input {
+  min-height: 160px !important;
+  resize: vertical !important;
+}
+
+/* Photo upload area */
+.right-content-main .warranty-photo-box {
+  border: 1px dashed #B8C2CE !important;
+  border-radius: 14px !important;
+
+  background-color: #F1F3F5 !important;
+  background-image: none !important;
+  background: #F1F3F5 !important;
+
+  color: #0D2347 !important;
+  box-shadow: none !important;
+}
+
+/* Upload instructions */
+.right-content-main .warranty-photo-box p,
+.right-content-main .warranty-photo-box span,
+.right-content-main .warranty-photo-box label {
+  color: #6C7888 !important;
+}
+
+/* File input text */
+.right-content-main .warranty-photo-input {
+  color: #0D2347 !important;
+}
+
+/* File picker button */
+.right-content-main
+  .warranty-photo-input::file-selector-button {
+  margin-right: 14px;
+
+  border: 0 !important;
+  border-radius: 10px !important;
+
+  background: #0D2347 !important;
+  color: #FFFFFF !important;
+
+  padding: 11px 16px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+}
+
+.right-content-main
+  .warranty-photo-input::file-selector-button:hover {
+  background: #1B3A6B !important;
+}
+
+/* Keep submit action red */
+.right-content-main .warranty-submit-button {
+  background: linear-gradient(
+    135deg,
+    #A01525 0%,
+    #BF1A2F 100%
+  ) !important;
+
+  color: #FFFFFF !important;
+}
+
+/* END FINAL LIGHT GRAY FIELD OVERRIDE */
+
+/* BEGIN DEALER DASHBOARD VISIBILITY FIX */
+
+/*
+  Dealer dashboard cards:
+  - White/light-gray surfaces
+  - Navy headings and values
+  - Blue supporting text
+  - Red accents
+*/
+
+.right-content-main .theme-panel {
+  border: 1px solid #DDE3EA !important;
+  background: #FFFFFF !important;
+  background-image: none !important;
+  color: #0D2347 !important;
+
+  box-shadow:
+    0 8px 24px rgba(10, 22, 40, 0.07) !important;
+}
+
+/* My Claims, Submitted, Action Required and Approved */
+.right-content-main .theme-panel p.text-white,
+.right-content-main .theme-panel .text-white {
+  color: #0D2347 !important;
+}
+
+.right-content-main .theme-panel p.text-slate-300,
+.right-content-main .theme-panel .text-slate-300 {
+  color: #1B3A6B !important;
+}
+
+/* Other slate utilities that may remain inside dashboard cards */
+.right-content-main .theme-panel .text-slate-200,
+.right-content-main .theme-panel .text-slate-400,
+.right-content-main .theme-panel .text-slate-500,
+.right-content-main .theme-panel .text-slate-600,
+.right-content-main .theme-panel .text-slate-700,
+.right-content-main .theme-panel .text-slate-800,
+.right-content-main .theme-panel .text-slate-900 {
+  color: #0D2347 !important;
+}
+
+/* Metric values */
+.right-content-main .theme-panel .text-4xl,
+.right-content-main .theme-panel .text-3xl,
+.right-content-main .theme-panel .text-2xl,
+.right-content-main .theme-panel .text-xl {
+  color: #0D2347 !important;
+}
+
+/* Metric-card icons */
+.right-content-main .theme-panel svg {
+  color: #0D2347 !important;
+}
+
+/* Light icon containers */
+.right-content-main .theme-panel [class*="bg-white/5"],
+.right-content-main .theme-panel [class*="bg-white/10"] {
+  border-color: #D7DEE8 !important;
+  background: #F1F3F5 !important;
+  background-image: none !important;
+  color: #0D2347 !important;
+}
+
+/* Claim Workflow step boxes */
+.right-content-main .theme-panel .grid > div {
+  border-color: #DDE3EA !important;
+}
+
+/* Text within workflow steps */
+.right-content-main .theme-panel .grid > div p {
+  color: #0D2347 !important;
+}
+
+/* Keep numbered workflow circles red with white numbers */
+.right-content-main .theme-panel .grid > div span.bg-\[\#BF1A2F\] {
+  background: #BF1A2F !important;
+  color: #FFFFFF !important;
+}
+
+/* Red accent stripes remain clearly visible */
+.right-content-main .theme-panel .bg-\[\#BF1A2F\] {
+  background: #BF1A2F !important;
+}
+
+/* Explicit dashboard headings */
+.right-content-main .theme-panel h2,
+.right-content-main .theme-panel h3,
+.right-content-main .theme-panel h4 {
+  color: #0D2347 !important;
+}
+
+/* Claim Workflow and Portal Access descriptions */
+.right-content-main .theme-panel > p,
+.right-content-main .theme-panel article p {
+  color: #1B3A6B !important;
+}
+
+/* Card hover feedback */
+.right-content-main .theme-panel:hover {
+  border-color: #C5CFDC !important;
+
+  box-shadow:
+    0 12px 30px rgba(10, 22, 40, 0.10) !important;
+}
+
+/* Keep text inside intentional red elements white */
+.right-content-main .theme-panel .bg-\[\#BF1A2F\],
+.right-content-main .theme-panel .bg-\[\#BF1A2F\] * {
+  color: #FFFFFF !important;
+}
+
+/* END DEALER DASHBOARD VISIBILITY FIX */
+
+/* BEGIN CLAIM REFERENCE AND CONVERSATION COLORS */
+
+/* Claim reference banner */
+.claim-reference-banner {
+  position: relative;
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  background: linear-gradient(
+    135deg,
+    #0A1628 0%,
+    #1B3A6B 52%,
+    #0D2347 100%
+  ) !important;
+
+  color: #FFFFFF !important;
+
+  box-shadow:
+    0 18px 40px rgba(10, 22, 40, 0.20);
+}
+
+.claim-reference-banner::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  width: 6px;
+
+  content: "";
+  background: #BF1A2F;
+}
+
+.claim-reference-banner h1,
+.claim-reference-banner h2,
+.claim-reference-banner h3,
+.claim-reference-banner p {
+  color: #FFFFFF !important;
+}
+
+/* Keep status pills white with navy text */
+.claim-reference-banner .claim-header-pill,
+.claim-reference-banner .claim-header-pill-dark {
+  background: #FFFFFF !important;
+  color: #0D2347 !important;
+}
+
+/* Conversation list */
+.conversation-thread {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
+
+  width: 100%;
+  max-height: 560px;
+  overflow-y: auto;
+
+  padding: 0.25rem 0.35rem 0.25rem 0;
+}
+
+/* Dealer message */
+.message-bubble-dealer {
+  align-self: flex-end;
+
+  width: min(85%, 760px);
+  padding: 1rem;
+
+  border: 1px solid rgba(191, 26, 47, 0.35);
+  border-radius: 1.15rem 1.15rem 0.3rem 1.15rem;
+
+  background: linear-gradient(
+    135deg,
+    #A01525 0%,
+    #BF1A2F 100%
+  ) !important;
+
+  color: #FFFFFF !important;
+
+  box-shadow:
+    0 10px 22px rgba(191, 26, 47, 0.20);
+}
+
+/* Support message */
+.message-bubble-support {
+  align-self: flex-start;
+
+  width: min(85%, 760px);
+  padding: 1rem;
+
+  border: 1px solid rgba(27, 58, 107, 0.22);
+  border-radius: 1.15rem 1.15rem 1.15rem 0.3rem;
+
+  background: linear-gradient(
+    135deg,
+    #0A1628 0%,
+    #1B3A6B 52%,
+    #0D2347 100%
+  ) !important;
+
+  color: #FFFFFF !important;
+
+  box-shadow:
+    0 10px 22px rgba(10, 22, 40, 0.18);
+}
+
+/* Force readable white message text */
+.message-bubble-dealer *,
+.message-bubble-support * {
+  color: #FFFFFF !important;
+}
+
+/* Date and sender label */
+.message-bubble-dealer time,
+.message-bubble-dealer .message-meta,
+.message-bubble-support time,
+.message-bubble-support .message-meta {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* Internal support note */
+.message-bubble-internal {
+  align-self: flex-start;
+
+  width: min(85%, 760px);
+  padding: 1rem;
+
+  border: 1px solid #E0B85D;
+  border-radius: 1rem;
+
+  background: #FFF8E7 !important;
+  color: #654B10 !important;
+
+  box-shadow:
+    0 8px 18px rgba(101, 75, 16, 0.08);
+}
+
+.message-bubble-internal * {
+  color: #654B10 !important;
+}
+
+/* Conversation scrollbar */
+.conversation-thread::-webkit-scrollbar {
+  width: 8px;
+}
+
+.conversation-thread::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: #EEF1F5;
+}
+
+.conversation-thread::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: #B6C0CD;
+}
+
+@media (max-width: 640px) {
+  .message-bubble-dealer,
+  .message-bubble-support,
+  .message-bubble-internal {
+    width: 94%;
+  }
+}
+
+/* END CLAIM REFERENCE AND CONVERSATION COLORS */
+
+/* =========================================================
+   GLOBAL POPPINS TYPOGRAPHY
+   ========================================================= */
+
+html {
+  font-family:
+    "Poppins",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family:
+    "Poppins",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  font-weight: 400;
+  line-height: 1.6;
+  color: #0D2347;
+}
+
+/*
+ * Make all interactive controls inherit Poppins.
+ */
+button,
+input,
+textarea,
+select,
+option {
+  font: inherit;
+  font-family:
+    "Poppins",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+/*
+ * Main headings:
+ * Strong enough for hierarchy without becoming too heavy.
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family:
+    "Poppins",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color: inherit;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+/*
+ * Avoid overly heavy text throughout the interface.
+ */
+h1 {
+  font-weight: 700;
+}
+
+h2,
+h3 {
+  font-weight: 700;
+}
+
+h4,
+h5,
+h6 {
+  font-weight: 600;
+}
+
+/*
+ * Standard body copy.
+ */
+p,
+li,
+dd,
+dt,
+label {
+  line-height: 1.6;
+}
+
+/*
+ * Small labels should remain readable.
+ */
+.text-xs {
+  line-height: 1.5;
+}
+
+/*
+ * Inputs should be especially readable.
+ */
+input,
+textarea,
+select {
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/*
+ * Buttons/navigation need slightly stronger weight.
+ */
+button,
+a {
+  font-family:
+    "Poppins",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+/*
+ * Prevent placeholders from becoming too faint.
+ */
+input::placeholder,
+textarea::placeholder {
+  font-family:
+    "Poppins",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  font-weight: 400;
+  color: #9AA5B3;
+  opacity: 1;
+}
+
+/*
+ * Tables and operational data need compact,
+ * highly readable typography.
+ */
+table,
+th,
+td {
+  font-family:
+    "Poppins",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+th {
+  font-weight: 600;
+}
+
+td {
+  font-weight: 400;
+}
+
+/*
+ * Badge and navigation text.
+ */
+nav,
+nav a {
+  font-weight: 600;
+}
+
+/*
+ * Avoid unreadably tiny operational labels.
+ */
+.right-content-main {
+  font-size: 0.9375rem;
+}
+
+/*
+ * Long claim descriptions/messages remain comfortable to read.
+ */
+.conversation-thread p,
+.message-bubble-dealer p,
+.message-bubble-support p,
+.message-bubble-internal p {
+  line-height: 1.7;
+}
+/* =========================================================
+   AG LOGO ROUTE LOADER
+   ========================================================= */
+
+@keyframes ag-logo-loading {
+  0% {
+    opacity: 0.35;
+    transform: scale(0.94);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  100% {
+    opacity: 0.35;
+    transform: scale(0.94);
+  }
+}
+
+.ag-loading-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: ag-logo-loading 1.25s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ag-loading-logo {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

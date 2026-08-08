@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local deployment/build files
+.vercel/
+build-output.txt
+*.predeploy-backup
+src/app/globals-before-*.css
+claim-detail-upgrade-files.txt
