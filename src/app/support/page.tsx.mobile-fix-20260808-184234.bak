@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import {
   AlertTriangle,
@@ -348,9 +348,9 @@ export default async function SupportPage({
       userName={userName}
       role={role}
     >
-      <div className="mx-auto w-full max-w-[1500px]">
+      <div className="mx-auto max-w-[1500px]">
         <section
-          className="relative overflow-hidden rounded-2xl p-5 text-white shadow-xl sm:rounded-3xl sm:p-8"
+          className="relative overflow-hidden rounded-3xl p-8 text-white shadow-xl"
           style={{
             background:
               "linear-gradient(135deg, #0A1628 0%, #1B3A6B 52%, #0D2347 100%)",
@@ -358,13 +358,13 @@ export default async function SupportPage({
         >
           <div className="absolute bottom-0 left-0 top-0 w-2 bg-[#BF1A2F]" />
 
-          <div className="relative flex flex-col gap-5 sm:gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div className="relative flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <p className="text-sm font-bold uppercase tracking-[0.2em] text-white/70">
                 Support workflow
               </p>
 
-              <h2 className="mt-2 text-2xl font-extrabold text-white sm:text-3xl">
+              <h2 className="mt-2 text-3xl font-extrabold text-white">
                 Claim Queue
               </h2>
 
@@ -376,7 +376,7 @@ export default async function SupportPage({
 
             <Link
               href="/dashboard"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/25 bg-white/10 px-4 py-3 text-sm font-bold text-white hover:bg-white/15 sm:w-fit sm:px-5"
+              className="inline-flex w-fit items-center gap-2 rounded-xl border border-white/25 bg-white/10 px-5 py-3 text-sm font-bold text-white hover:bg-white/15"
             >
               Operations Overview
               <ArrowRight className="h-4 w-4" />
@@ -384,7 +384,7 @@ export default async function SupportPage({
           </div>
         </section>
 
-        <nav className="mt-5 grid grid-cols-2 gap-2 rounded-2xl border border-[#DDE3EA] bg-white p-2 shadow-sm sm:mt-7 sm:flex sm:overflow-x-auto">
+        <nav className="mt-7 flex gap-2 overflow-x-auto rounded-2xl border border-[#DDE3EA] bg-white p-2 shadow-sm">
           {tabs.map((tab) => {
             const Icon = tab.icon;
             const selected = view === tab.key;
@@ -398,7 +398,7 @@ export default async function SupportPage({
                     view: tab.key,
                   },
                 )}
-                className={`flex min-w-0 items-center justify-center gap-2 rounded-xl px-2 py-3 text-center text-xs font-bold leading-tight sm:min-w-max sm:px-4 sm:text-sm ${
+                className={`flex min-w-max items-center gap-2 rounded-xl px-4 py-3 text-sm font-bold ${
                   selected
                     ? "bg-[#0D2347] text-white shadow-sm"
                     : "text-[#1B3A6B] hover:bg-[#F1F3F5]"
@@ -424,10 +424,10 @@ export default async function SupportPage({
           })}
         </nav>
 
-        <section className="mt-5 rounded-2xl border border-[#DDE3EA] bg-white p-4 shadow-sm sm:mt-6 sm:p-5">
+        <section className="mt-6 rounded-2xl border border-[#DDE3EA] bg-white p-5 shadow-sm">
           <form
             method="get"
-            className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 xl:grid-cols-[minmax(280px,1fr)_190px_220px_190px_auto]"
+            className="grid gap-4 xl:grid-cols-[minmax(280px,1fr)_190px_220px_190px_auto]"
           >
             <input
               type="hidden"
@@ -435,7 +435,7 @@ export default async function SupportPage({
               value={view}
             />
 
-            <label className="relative sm:col-span-2 xl:col-span-1">
+            <label className="relative">
               <span className="sr-only">
                 Search claims
               </span>
@@ -446,14 +446,14 @@ export default async function SupportPage({
                 name="search"
                 defaultValue={search}
                 placeholder="Search claim, customer, PO or part number"
-                className="h-12 w-full min-w-0 rounded-xl border border-[#CBD4E0] bg-[#F3F5F8] pl-12 pr-4 text-base font-medium text-[#0D2347] outline-none placeholder:text-[#9AA5B3] focus:border-[#BF1A2F] focus:bg-white focus:ring-4 focus:ring-[#BF1A2F]/10 sm:text-sm"
+                className="h-12 w-full rounded-xl border border-[#CBD4E0] bg-[#F3F5F8] pl-12 pr-4 text-sm font-medium text-[#0D2347] outline-none placeholder:text-[#9AA5B3] focus:border-[#BF1A2F] focus:bg-white focus:ring-4 focus:ring-[#BF1A2F]/10"
               />
             </label>
 
             <select
               name="priority"
               defaultValue={priority}
-              className="h-12 w-full min-w-0 rounded-xl border border-[#CBD4E0] bg-[#F3F5F8] px-4 text-base font-semibold text-[#0D2347] outline-none focus:border-[#BF1A2F] focus:bg-white focus:ring-4 focus:ring-[#BF1A2F]/10 sm:text-sm"
+              className="h-12 rounded-xl border border-[#CBD4E0] bg-[#F3F5F8] px-4 text-sm font-semibold text-[#0D2347] outline-none focus:border-[#BF1A2F] focus:bg-white focus:ring-4 focus:ring-[#BF1A2F]/10"
             >
               <option value="">
                 All priorities
@@ -475,7 +475,7 @@ export default async function SupportPage({
             <select
               name="status"
               defaultValue={status}
-              className="h-12 w-full min-w-0 rounded-xl border border-[#CBD4E0] bg-[#F3F5F8] px-4 text-base font-semibold text-[#0D2347] outline-none focus:border-[#BF1A2F] focus:bg-white focus:ring-4 focus:ring-[#BF1A2F]/10 sm:text-sm"
+              className="h-12 rounded-xl border border-[#CBD4E0] bg-[#F3F5F8] px-4 text-sm font-semibold text-[#0D2347] outline-none focus:border-[#BF1A2F] focus:bg-white focus:ring-4 focus:ring-[#BF1A2F]/10"
             >
               <option value="">
                 All statuses
@@ -503,7 +503,7 @@ export default async function SupportPage({
             <select
               name="sort"
               defaultValue={sort}
-              className="h-12 w-full min-w-0 rounded-xl border border-[#CBD4E0] bg-[#F3F5F8] px-4 text-base font-semibold text-[#0D2347] outline-none focus:border-[#BF1A2F] focus:bg-white focus:ring-4 focus:ring-[#BF1A2F]/10 sm:text-sm"
+              className="h-12 rounded-xl border border-[#CBD4E0] bg-[#F3F5F8] px-4 text-sm font-semibold text-[#0D2347] outline-none focus:border-[#BF1A2F] focus:bg-white focus:ring-4 focus:ring-[#BF1A2F]/10"
             >
               <option value="oldest">
                 Oldest first
@@ -518,7 +518,7 @@ export default async function SupportPage({
 
             <button
               type="submit"
-              className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#A01525] to-[#BF1A2F] px-6 text-sm font-bold text-white shadow-lg shadow-red-900/10 sm:col-span-2 xl:col-span-1 xl:w-auto"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#A01525] to-[#BF1A2F] px-6 text-sm font-bold text-white shadow-lg shadow-red-900/10"
             >
               <Filter className="h-4 w-4" />
               Apply

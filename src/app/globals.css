@@ -1690,3 +1690,12 @@ button {
   }
 }
 
+
+/* AG-MOBILE-NAV-SAFE-AREA */
+
+@media (max-width: 1023px) {
+  .mobile-role-navigation {
+    padding-top: max(0.75rem, env(safe-area-inset-top));
+  }
+}
+
