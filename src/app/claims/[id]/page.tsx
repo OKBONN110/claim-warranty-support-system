@@ -20,6 +20,7 @@ import ClaimNotificationReader from "../../../components/claim-notification-read
 import { createClient } from "../../../lib/supabase/server";
 import {
   assignClaimToMe,
+  assignClaimToStaff,
   sendMessage,
   updateClaimStatus,
 } from "./actions";
@@ -164,6 +165,39 @@ export default async function ClaimDetailPage({
       )
       .maybeSingle();
 
+  const role =
+    profile?.role ||
+    "dealer";
+
+  const canAssignStaff =
+    ["admin", "supervisor"].includes(role);
+
+  const {
+    data: assignableStaff,
+  } = canAssignStaff
+    ? await supabase
+        .from("profiles")
+        .select(
+          "id, full_name, email, role",
+        )
+        .in(
+          "role",
+          [
+            "support",
+            "supervisor",
+            "admin",
+          ],
+        )
+        .order(
+          "full_name",
+          {
+            ascending: true,
+          },
+        )
+    : {
+        data: [],
+      };
+
   const {
     data: claim,
     error: claimError,
@@ -262,10 +296,6 @@ export default async function ClaimDetailPage({
     user.email ||
     "User";
 
-  const role =
-    profile?.role ||
-    "dealer";
-
   const isStaff =
     [
       "support",
@@ -281,6 +311,12 @@ export default async function ClaimDetailPage({
 
   const assignToMe =
     assignClaimToMe.bind(
+      null,
+      claim.id,
+    );
+
+  const assignToStaff =
+    assignClaimToStaff.bind(
       null,
       claim.id,
     );
@@ -769,19 +805,63 @@ export default async function ClaimDetailPage({
                   Support Actions
                 </h3>
 
-                <form
-                  action={
-                    assignToMe
-                  }
-                  className="mt-5"
-                >
-                  <button
-                    type="submit"
-                    className="w-full rounded-xl border border-[#1B3A6B]/20 bg-[#1B3A6B]/5 px-4 py-3 text-sm font-bold text-[#1B3A6B] hover:bg-[#1B3A6B]/10"
+                {canAssignStaff ? (
+                  <form
+                    action={assignToStaff}
+                    className="mt-5"
                   >
-                    Assign to Me
-                  </button>
-                </form>
+                    <label className="block text-sm font-semibold text-[#0D2347]">
+                      Assign Claim To
+
+                      <select
+                        name="assigned_to"
+                        defaultValue={
+                          claim.assigned_to ||
+                          ""
+                        }
+                        className="mt-2 h-12 w-full rounded-xl border border-[#CBD4E0] bg-[#F1F3F5] px-4 text-base font-semibold text-[#0D2347] outline-none focus:border-[#BF1A2F] focus:bg-white focus:ring-4 focus:ring-[#BF1A2F]/10 sm:text-sm"
+                      >
+                        <option value="">
+                          Unassigned
+                        </option>
+
+                        {(assignableStaff ?? []).map(
+                          (staff) => (
+                            <option
+                              key={staff.id}
+                              value={staff.id}
+                            >
+                              {staff.full_name ||
+                                staff.email ||
+                                "Staff Member"}
+                              {" - "}
+                              {staff.role}
+                            </option>
+                          ),
+                        )}
+                      </select>
+                    </label>
+
+                    <button
+                      type="submit"
+                      className="mt-3 w-full rounded-xl bg-[#0D2347] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#1B3A6B]"
+                    >
+                      Assign Claim
+                    </button>
+                  </form>
+                ) : (
+                  <form
+                    action={assignToMe}
+                    className="mt-5"
+                  >
+                    <button
+                      type="submit"
+                      className="w-full rounded-xl border border-[#1B3A6B]/20 bg-[#1B3A6B]/5 px-4 py-3 text-sm font-bold text-[#1B3A6B] transition hover:bg-[#1B3A6B]/10"
+                    >
+                      Assign to Me
+                    </button>
+                  </form>
+                )}
 
                 <form
                   action={
@@ -946,5 +1026,6 @@ export default async function ClaimDetailPage({
     </AppShell>
   );
 }
+
 
 

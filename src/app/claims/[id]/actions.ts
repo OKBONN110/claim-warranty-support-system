@@ -1,4 +1,4 @@
-"use server";
+﻿"use server";
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -96,6 +96,101 @@ export async function assignClaimToMe(
     .from("claims")
     .update({
       assigned_to: user.id,
+      status: "under_review",
+    })
+    .eq("id", claimId);
+
+  if (error) {
+    redirect(
+      `/claims/${claimId}?error=${encodeURIComponent(
+        error.message,
+      )}`,
+    );
+  }
+
+  revalidatePath(`/claims/${claimId}`);
+  revalidatePath("/support");
+  revalidatePath("/claims");
+  revalidatePath("/dashboard");
+
+  redirect(`/claims/${claimId}?assigned=1`);
+}
+
+export async function assignClaimToStaff(
+  claimId: string,
+  formData: FormData,
+) {
+  const { supabase, role } =
+    await getAuthenticatedContext();
+
+  if (!["admin", "supervisor"].includes(role)) {
+    redirect(
+      `/claims/${claimId}?error=${encodeURIComponent(
+        "Permission denied",
+      )}`,
+    );
+  }
+
+  const assigneeValue =
+    formData.get("assigned_to");
+
+  const assignedTo =
+    typeof assigneeValue === "string"
+      ? assigneeValue.trim()
+      : "";
+
+  /*
+   * Empty value means return the claim
+   * to the unassigned queue.
+   */
+  if (!assignedTo) {
+    const { error } = await supabase
+      .from("claims")
+      .update({
+        assigned_to: null,
+      })
+      .eq("id", claimId);
+
+    if (error) {
+      redirect(
+        `/claims/${claimId}?error=${encodeURIComponent(
+          error.message,
+        )}`,
+      );
+    }
+
+    revalidatePath(`/claims/${claimId}`);
+    revalidatePath("/support");
+    revalidatePath("/claims");
+    revalidatePath("/dashboard");
+
+    redirect(`/claims/${claimId}?assigned=1`);
+  }
+
+  /*
+   * Never trust the submitted UUID.
+   * Confirm that it belongs to an
+   * eligible operational staff profile.
+   */
+  const { data: assignee } = await supabase
+    .from("profiles")
+    .select("id, full_name, role")
+    .eq("id", assignedTo)
+    .in("role", staffRoles)
+    .maybeSingle();
+
+  if (!assignee) {
+    redirect(
+      `/claims/${claimId}?error=${encodeURIComponent(
+        "Invalid assignee",
+      )}`,
+    );
+  }
+
+  const { error } = await supabase
+    .from("claims")
+    .update({
+      assigned_to: assignee.id,
       status: "under_review",
     })
     .eq("id", claimId);
