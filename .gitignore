@@ -46,3 +46,5 @@ build-output.txt
 *.predeploy-backup
 src/app/globals-before-*.css
 claim-detail-upgrade-files.txt
+.vercel
+.env*
