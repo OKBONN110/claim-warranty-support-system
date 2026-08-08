@@ -1699,3 +1699,34 @@ button {
   }
 }
 
+
+/* AG-MOBILE-APP-SHELL-2026 */
+
+@media (max-width: 1023px) {
+  .right-content-header {
+    width: 100%;
+    min-width: 0;
+    background: #ffffff;
+  }
+
+  .right-content-area {
+    width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+  }
+
+  .right-content-main {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@supports (padding-top: env(safe-area-inset-top)) {
+  @media (max-width: 1023px) {
+    body {
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+  }
+}
+

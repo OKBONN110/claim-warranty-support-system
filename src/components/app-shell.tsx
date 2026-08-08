@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+﻿import type { ReactNode } from "react";
 import { logout } from "../app/login/actions";
 import { createClient } from "../lib/supabase/server";
 import NotificationBell, {
@@ -79,7 +79,7 @@ export default async function AppShell({
           LEFT SIDEBAR
           =================================================== */}
       <aside
-        className="relative border-b border-white/10 text-white lg:min-h-screen lg:border-b-0 lg:border-r"
+        className="relative overflow-hidden border-b border-white/10 text-white lg:min-h-screen lg:overflow-visible lg:border-b-0 lg:border-r"
         style={{
           background:
             "linear-gradient(155deg, #0A1628 0%, #1B3A6B 52%, #0D2347 100%)",
@@ -88,19 +88,19 @@ export default async function AppShell({
         <div className="absolute bottom-0 left-0 top-0 w-1 bg-[#BF1A2F]" />
 
         {/* Brand */}
-        <div className="flex items-center gap-3 border-b border-white/10 px-6 py-6">
-          <div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-white/15 bg-white/10 font-bold text-white">
+        <div className="flex items-center gap-3 border-b border-white/10 px-4 py-3 sm:px-6 sm:py-4 lg:py-6">
+          <div className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/15 bg-white/10 text-sm font-bold text-white sm:h-12 sm:w-12 sm:rounded-2xl sm:text-base">
             CS
 
             <span className="absolute bottom-0 left-0 right-0 h-1 bg-[#BF1A2F]" />
           </div>
 
           <div className="min-w-0">
-            <p className="font-bold text-white">
+            <p className="truncate text-sm font-bold text-white sm:text-base">
               {portalName}
             </p>
 
-            <p className="text-xs text-slate-300">
+            <p className="mt-0.5 hidden text-xs text-slate-300 sm:block">
               {portalDescription}
             </p>
           </div>
@@ -145,22 +145,22 @@ export default async function AppShell({
           =================================================== */}
       <div className="right-content-area">
         <header className="right-content-header">
-          <div className="flex min-h-24 items-center justify-between gap-5 px-6 pb-5 pt-4 lg:px-10">
+          <div className="flex min-h-0 flex-col items-stretch gap-3 px-4 py-4 sm:min-h-24 sm:flex-row sm:items-center sm:justify-between sm:gap-5 sm:px-6 sm:pb-5 sm:pt-4 lg:px-10">
             {/* Page title */}
             <div className="min-w-0">
-              <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#1B3A6B]">
+              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#1B3A6B] sm:text-xs sm:tracking-[0.22em]">
                 {staffUser
                   ? "Support Operations"
                   : "Dealer Services"}
               </p>
 
-              <h1 className="mt-1 truncate text-2xl font-bold text-[#0D2347]">
+              <h1 className="mt-1 break-words text-xl font-bold leading-tight text-[#0D2347] sm:truncate sm:text-2xl">
                 {title}
               </h1>
             </div>
 
             {/* Header controls */}
-            <div className="flex items-center gap-3">
+            <div className="flex w-full items-center justify-between gap-2 sm:w-auto sm:justify-end sm:gap-3">
               {user ? (
                 <NotificationBell
                   userId={user.id}
@@ -187,7 +187,7 @@ export default async function AppShell({
               >
                 <button
                   type="submit"
-                  className="rounded-xl border border-[#0D2347]/15 px-3 py-2 text-xs font-bold text-[#0D2347] transition hover:border-[#BF1A2F] hover:text-[#BF1A2F]"
+                  className="inline-flex min-h-11 items-center justify-center rounded-xl border border-[#0D2347]/15 bg-white px-4 py-2 text-xs font-bold text-[#0D2347] shadow-sm transition hover:border-[#BF1A2F] hover:text-[#BF1A2F]"
                 >
                   Log out
                 </button>
@@ -196,7 +196,7 @@ export default async function AppShell({
           </div>
         </header>
 
-        <main className="right-content-main px-5 py-7 sm:px-7 lg:px-10 lg:py-9">
+        <main className="right-content-main min-w-0 px-3 py-4 sm:px-7 sm:py-7 lg:px-10 lg:py-9">
           {children}
         </main>
       </div>
