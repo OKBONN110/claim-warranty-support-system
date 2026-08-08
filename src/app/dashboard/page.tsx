@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { redirect } from "next/navigation";
 import {
   AlertTriangle,
@@ -578,7 +578,7 @@ export default async function DashboardPage() {
                           {
                             claim.customer_name
                           }{" "}
-                          ·{" "}
+                          Â·{" "}
                           {claim.faulty_part_numbers ||
                             claim.product_name}
                         </p>
@@ -641,7 +641,7 @@ export default async function DashboardPage() {
           {/* =================================================
               METRICS
               ================================================= */}
-          <section className="mt-7 grid gap-5 sm:grid-cols-2 xl:grid-cols-5">
+          <section className="mt-5 grid grid-cols-1 gap-4 sm:mt-7 sm:grid-cols-2 sm:gap-5 xl:grid-cols-5">
             <DealerMetric
               label="My Claims"
               value={totalClaims}
@@ -686,9 +686,9 @@ export default async function DashboardPage() {
           {/* =================================================
               SEARCH + RECENT CLAIMS
               ================================================= */}
-          <section className="mt-8 grid gap-6 xl:grid-cols-[1.35fr_0.65fr]">
+          <section className="mt-6 grid min-w-0 gap-5 sm:mt-8 sm:gap-6 xl:grid-cols-[1.35fr_0.65fr]">
             <article className="overflow-hidden rounded-2xl border border-[#DDE3EA] bg-white shadow-[0_8px_24px_rgba(10,22,40,0.055)]">
-              <div className="border-b border-[#E5E9EF] px-6 py-5">
+              <div className="border-b border-[#E5E9EF] px-4 py-4 sm:px-6 sm:py-5">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                   <div>
                     <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#BF1A2F]">
@@ -720,7 +720,7 @@ export default async function DashboardPage() {
                   <input
                     name="search"
                     placeholder="Search claim number, customer, PO or part number"
-                    className="h-12 w-full rounded-xl border border-[#CBD4E0] bg-[#F3F5F8] pl-12 pr-4 text-sm font-medium text-[#0D2347] outline-none placeholder:text-[#9BA5B2] focus:border-[#BF1A2F] focus:bg-white focus:ring-4 focus:ring-[#BF1A2F]/10"
+                    className="h-12 w-full min-w-0 rounded-xl border border-[#CBD4E0] bg-[#F3F5F8] pl-12 pr-4 text-base font-medium text-[#0D2347] outline-none placeholder:text-[#9BA5B2] focus:border-[#BF1A2F] focus:bg-white focus:ring-4 focus:ring-[#BF1A2F]/10 sm:text-sm"
                   />
                 </form>
               </div>
@@ -731,7 +731,7 @@ export default async function DashboardPage() {
                     <Link
                       key={claim.id}
                       href={`/claims/${claim.id}`}
-                      className="group grid gap-4 px-6 py-5 hover:bg-[#F8F9FB] sm:grid-cols-[minmax(240px,1fr)_160px_125px]"
+                      className="group grid min-w-0 gap-4 px-4 py-4 hover:bg-[#F8F9FB] sm:grid-cols-[minmax(240px,1fr)_160px_125px] sm:px-6 sm:py-5"
                     >
                       <div className="min-w-0">
                         <div className="flex flex-wrap items-center gap-2">
@@ -752,13 +752,13 @@ export default async function DashboardPage() {
                           ) : null}
                         </div>
 
-                        <p className="mt-2 truncate text-sm font-semibold text-[#1B3A6B]">
+                        <p className="mt-2 break-words text-sm font-semibold text-[#1B3A6B] sm:truncate">
                           {
                             claim.customer_name
                           }
                         </p>
 
-                        <p className="mt-1 truncate text-xs text-[#718096]">
+                        <p className="mt-1 break-words text-xs text-[#718096] sm:truncate">
                           {claim.invoice_or_po_number
                             ? `PO: ${claim.invoice_or_po_number}`
                             : claim.faulty_part_numbers ||
@@ -834,7 +834,7 @@ export default async function DashboardPage() {
                 ACCOUNT SUMMARY
                 =============================================== */}
             <div className="space-y-6">
-              <article className="rounded-2xl border border-[#DDE3EA] bg-white p-6 shadow-sm">
+              <article className="rounded-2xl border border-[#DDE3EA] bg-white p-4 shadow-sm sm:p-6">
                 <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#BF1A2F]">
                   Dealer account
                 </p>
@@ -878,7 +878,7 @@ export default async function DashboardPage() {
                 </div>
               </article>
 
-              <article className="rounded-2xl border border-[#DDE3EA] bg-white p-6 shadow-sm">
+              <article className="rounded-2xl border border-[#DDE3EA] bg-white p-4 shadow-sm sm:p-6">
                 <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#BF1A2F]">
                   Before submitting
                 </p>
@@ -910,8 +910,8 @@ export default async function DashboardPage() {
           {/* =================================================
               CLAIM WORKFLOW
               ================================================= */}
-          <section className="mt-8 grid gap-6 xl:grid-cols-[1fr_420px]">
-            <article className="rounded-2xl border border-[#DDE3EA] bg-white p-6 shadow-sm">
+          <section className="mt-6 grid min-w-0 gap-5 sm:mt-8 sm:gap-6 xl:grid-cols-[1fr_420px]">
+            <article className="rounded-2xl border border-[#DDE3EA] bg-white p-4 shadow-sm sm:p-6">
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#BF1A2F]">
                 Claim journey
               </p>
@@ -920,7 +920,7 @@ export default async function DashboardPage() {
                 Claim Workflow
               </h3>
 
-              <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+              <div className="mt-5 grid grid-cols-1 gap-3 sm:mt-6 sm:grid-cols-2 sm:gap-4 xl:grid-cols-4">
                 {[
                   {
                     number: 1,
@@ -952,7 +952,7 @@ export default async function DashboardPage() {
                 ].map((step) => (
                   <div
                     key={step.number}
-                    className="rounded-xl border border-[#DDE3EA] bg-[#F6F8FA] p-5"
+                    className="rounded-xl border border-[#DDE3EA] bg-[#F6F8FA] p-4 sm:p-5"
                   >
                     <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#BF1A2F] text-sm font-extrabold text-white">
                       {step.number}
@@ -973,8 +973,8 @@ export default async function DashboardPage() {
             {/* ===============================================
                 RESOLVED CLAIMS
                 =============================================== */}
-            <article className="rounded-2xl border border-[#DDE3EA] bg-white p-6 shadow-sm">
-              <div className="flex items-start justify-between gap-4">
+            <article className="rounded-2xl border border-[#DDE3EA] bg-white p-4 shadow-sm sm:p-6">
+              <div className="flex min-w-0 items-start justify-between gap-3 sm:gap-4">
                 <div>
                   <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#BF1A2F]">
                     Outcomes
@@ -996,8 +996,8 @@ export default async function DashboardPage() {
                       href={`/claims/${claim.id}`}
                       className="block rounded-xl border border-[#E2E7ED] bg-[#F8F9FB] p-4 hover:border-[#BF1A2F]/30 hover:bg-white"
                     >
-                      <div className="flex items-center justify-between gap-4">
-                        <p className="truncate text-sm font-extrabold text-[#0D2347]">
+                      <div className="flex min-w-0 flex-wrap items-center justify-between gap-2 sm:flex-nowrap sm:gap-4">
+                        <p className="min-w-0 break-all text-sm font-extrabold text-[#0D2347] sm:truncate">
                           {
                             claim.claim_number
                           }
@@ -1014,7 +1014,7 @@ export default async function DashboardPage() {
                         </span>
                       </div>
 
-                      <p className="mt-2 truncate text-xs text-[#65758A]">
+                      <p className="mt-2 break-words text-xs text-[#65758A] sm:truncate">
                         {
                           claim.customer_name
                         }

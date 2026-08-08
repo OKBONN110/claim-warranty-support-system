@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { redirect } from "next/navigation";
 import {
   ArrowRight,
@@ -222,7 +222,7 @@ export default async function ClaimsPage({
       userName={userName}
       role={role}
     >
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto w-full max-w-7xl">
         {created ? (
           <div className="mb-6 rounded-2xl border border-emerald-200 bg-emerald-50 px-5 py-4 text-sm font-semibold text-emerald-800">
             Claim{" "}
@@ -233,7 +233,7 @@ export default async function ClaimsPage({
           </div>
         ) : null}
 
-        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mb-5 flex flex-col gap-4 sm:mb-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#BF1A2F]">
               Claims register
@@ -269,7 +269,7 @@ export default async function ClaimsPage({
           ].includes(role) ? (
             <Link
               href="/claims/new"
-              className="group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#A01525] to-[#BF1A2F] px-5 py-3 text-sm font-bold text-white shadow-[0_8px_20px_rgba(191,26,47,0.2)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(191,26,47,0.3)]"
+              className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#A01525] to-[#BF1A2F] px-5 py-3 text-sm font-bold text-white shadow-[0_8px_20px_rgba(191,26,47,0.2)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(191,26,47,0.3)] sm:w-auto"
             >
               <FilePlus2 className="h-4 w-4" />
 
@@ -288,7 +288,133 @@ export default async function ClaimsPage({
         ) : null}
 
         <div className="overflow-hidden rounded-2xl border border-[#DDE3EA] bg-white shadow-[0_8px_24px_rgba(10,22,40,0.06)]">
-          <div className="overflow-x-auto">
+          {/* Mobile claim cards */}
+          <div className="divide-y divide-[#E7EBF0] md:hidden">
+            {claims.map((claim) => {
+              const hasUnreadReply =
+                unreadClaimIds.has(claim.id);
+
+              return (
+                <Link
+                  key={claim.id}
+                  href={`/claims/${claim.id}`}
+                  className={`relative block p-4 transition ${
+                    hasUnreadReply
+                      ? "bg-[#FFF8F9]"
+                      : "bg-white"
+                  }`}
+                >
+                  {hasUnreadReply ? (
+                    <span className="absolute bottom-0 left-0 top-0 w-1 bg-[#BF1A2F]" />
+                  ) : null}
+
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <p className="break-all text-sm font-extrabold text-[#0D2347]">
+                          {claim.claim_number}
+                        </p>
+
+                        {hasUnreadReply ? (
+                          <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-[#BF1A2F] px-2 py-1 text-[9px] font-extrabold uppercase tracking-wide text-white">
+                            <span className="h-1.5 w-1.5 rounded-full bg-white" />
+                            New Reply
+                          </span>
+                        ) : null}
+                      </div>
+
+                      {claim.requested_amount !== null ? (
+                        <p className="mt-1 text-xs text-[#718096]">
+                          Amount:{" "}
+                          {Number(
+                            claim.requested_amount,
+                          ).toLocaleString()}
+                        </p>
+                      ) : null}
+                    </div>
+
+                    <ArrowRight className="mt-1 h-5 w-5 shrink-0 text-[#8793A3]" />
+                  </div>
+
+                  <div className="mt-4">
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-[#8793A3]">
+                      Customer
+                    </p>
+
+                    <p className="mt-1 break-words text-sm font-semibold text-[#0D2347]">
+                      {claim.customer_name}
+                    </p>
+                  </div>
+
+                  <div className="mt-3">
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-[#8793A3]">
+                      Product / Part
+                    </p>
+
+                    <p className="mt-1 break-words text-sm text-[#65758A]">
+                      {claim.faulty_part_numbers ||
+                        claim.product_name}
+                    </p>
+                  </div>
+
+                  <div className="mt-4 grid grid-cols-2 gap-3">
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-wider text-[#8793A3]">
+                        Priority
+                      </p>
+
+                      <span
+                        className={`mt-1.5 inline-flex rounded-full border px-2.5 py-1 text-[11px] font-bold ${getPriorityClasses(
+                          claim.priority,
+                        )}`}
+                      >
+                        {claim.priority}
+                      </span>
+                    </div>
+
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-wider text-[#8793A3]">
+                        Status
+                      </p>
+
+                      <span
+                        className={`mt-1.5 inline-flex rounded-full border px-2.5 py-1 text-[11px] font-bold ${getStatusClasses(
+                          claim.status,
+                        )}`}
+                      >
+                        {formatStatus(claim.status)}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 border-t border-[#E9EDF2] pt-3">
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-[#8793A3]">
+                      Created
+                    </p>
+
+                    <p className="mt-1 text-xs font-medium text-[#65758A]">
+                      {formatDate(claim.created_at)}
+                    </p>
+                  </div>
+                </Link>
+              );
+            })}
+
+            {!claims.length ? (
+              <div className="px-5 py-12 text-center">
+                <p className="font-bold text-[#0D2347]">
+                  No claims found
+                </p>
+
+                <p className="mt-2 text-sm text-[#65758A]">
+                  Create your first claim to begin tracking it.
+                </p>
+              </div>
+            ) : null}
+          </div>
+
+          {/* Desktop claim table */}
+          <div className="hidden overflow-x-auto md:block">
             <table className="w-full min-w-[900px] text-left">
               <thead className="border-b border-[#DDE3EA] bg-[#F4F6F8]">
                 <tr>

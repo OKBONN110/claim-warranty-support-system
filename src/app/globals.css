@@ -1730,3 +1730,23 @@ button {
   }
 }
 
+
+/* AG-CLAIMS-DASHBOARD-MOBILE-2026 */
+
+@media (max-width: 767px) {
+  .right-content-main {
+    overflow-x: clip;
+  }
+
+  .right-content-main > * {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .right-content-main {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
+
